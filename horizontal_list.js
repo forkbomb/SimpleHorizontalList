@@ -1,8 +1,9 @@
 ;(function($) {
-	var HorizontalList = function(element) {
+	var HorizontalList = function(element, opts) {
 		this.$element = element;
-		this.$prev_button = $('<span class="fa fa-chevron-left"></span>');
-		this.$next_button = $('<span class="fa fa-chevron-right"></span>');
+		this.opts = opts;
+		this.$prev_button = opts.prev_button || $('<span class="fa fa-chevron-left"></span>');
+		this.$next_button = opts.next_button || $('<span class="fa fa-chevron-right"></span>');
 		this.$list = this.$element.children('ul');
 		this.$children = this.$element.find('li');
 		this.count = this.$children.length;
@@ -69,7 +70,8 @@
 		}
 	};
 
-	$.fn.horizontal_list = function() {
-		new HorizontalList($(this))
+	$.fn.horizontal_list = function(opts) {
+		opts = opts || {};
+		new HorizontalList($(this), opts)
 	};
 })(jQuery);
